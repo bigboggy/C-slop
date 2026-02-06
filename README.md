@@ -26,6 +26,44 @@ cslop watch
 
 Visit `http://localhost:3000`
 
+## OpenCode Skill (AI Assistant Support)
+
+This repository includes an **OpenCode skill** for C-slop located at `.opencode/skills/c-slop/SKILL.md`. This skill helps AI assistants (like OpenCode, Claude, etc.) understand C-slop's syntax and provide better assistance.
+
+### What is it?
+
+The skill is a quick reference guide containing:
+- Symbol glossary (`@`, `$`, `#`, `>`, etc.)
+- Backend syntax for `.slop` files
+- Frontend syntax for `.ui` files
+- Common patterns and examples
+- Command reference
+
+### Installation
+
+To use the skill in your own project:
+
+```bash
+# Option 1: Project-local (recommended)
+cp -r .opencode/skills/c-slop /path/to/your/project/.opencode/skills/
+
+# Option 2: Global installation
+cp -r .opencode/skills/c-slop ~/.config/opencode/skills/
+
+# Option 3: Claude-compatible
+cp -r .opencode/skills/c-slop ~/.claude/skills/
+```
+
+### Why use it?
+
+The skill provides AI assistants with context about C-slop, enabling them to:
+- Understand the symbol-based syntax
+- Write correct `.slop` and `.ui` files
+- Suggest appropriate patterns
+- Explain error messages
+
+For complete documentation, see the skill file or read `C-SLOP.md` and `USAGE.md`.
+
 ## Project Structure
 
 ```
