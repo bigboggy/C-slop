@@ -41,16 +41,23 @@ The skill is a quick reference guide containing:
 
 ### Installation
 
-To use the skill in your own project:
+**Automatic**: The skill is automatically installed when you create a new project:
 
 ```bash
-# Option 1: Project-local (recommended)
-cp -r .opencode/skills/c-slop /path/to/your/project/.opencode/skills/
+cslop create my-app
+# Creates .claude/skills/c-slop/SKILL.md automatically
+```
 
-# Option 2: Global installation
+**Manual** (for existing projects or global install):
+
+```bash
+# Project-local
+cp -r .opencode/skills/c-slop /path/to/your/project/.claude/skills/
+
+# Global (OpenCode)
 cp -r .opencode/skills/c-slop ~/.config/opencode/skills/
 
-# Option 3: Claude-compatible
+# Global (Claude Code)
 cp -r .opencode/skills/c-slop ~/.claude/skills/
 ```
 
