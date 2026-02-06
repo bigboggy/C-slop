@@ -289,24 +289,29 @@ import axios from "axios"
 */github > axios.get("https://api.github.com") > #json
 ```
 
-## Installation for OpenCode Users
+## Installation
 
-### Method 1: Project-local (Recommended)
-Copy this skill into your project:
+### Automatic (New Projects)
+The skill is **automatically installed** when you create a new project:
+```bash
+cslop create my-app
+# Creates .claude/skills/c-slop/SKILL.md automatically
+```
+
+### Manual (Existing Projects)
+For existing projects, copy the skill manually:
 ```bash
 # From C-slop repo root
-cp -r .opencode/skills/c-slop /path/to/your/project/.opencode/skills/
+cp -r .opencode/skills/c-slop /path/to/your/project/.claude/skills/
 ```
 
-### Method 2: Global installation
+### Global Installation
+Install once for all projects:
 ```bash
-# Copy to global OpenCode config
+# OpenCode
 cp -r .opencode/skills/c-slop ~/.config/opencode/skills/
-```
 
-### Method 3: Claude-compatible
-```bash
-# Copy to Claude skills directory
+# Claude Code
 cp -r .opencode/skills/c-slop ~/.claude/skills/
 ```
 
