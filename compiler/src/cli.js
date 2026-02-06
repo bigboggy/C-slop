@@ -1250,6 +1250,21 @@ dist/
   fs.writeFileSync(path.join(projectPath, '.gitignore'), gitignore);
   console.log('  \x1b[32m✓\x1b[0m .gitignore');
 
+  // Copy C-slop skill for AI assistants (Claude Code, OpenCode)
+  const skillSrcDir = path.join(__dirname, '..', '..', '.opencode', 'skills', 'c-slop');
+  if (fs.existsSync(skillSrcDir)) {
+    // Create .claude/skills/c-slop directory
+    const claudeSkillDir = path.join(projectPath, '.claude', 'skills', 'c-slop');
+    fs.mkdirSync(claudeSkillDir, { recursive: true });
+
+    // Copy SKILL.md
+    const skillFile = path.join(skillSrcDir, 'SKILL.md');
+    if (fs.existsSync(skillFile)) {
+      fs.copyFileSync(skillFile, path.join(claudeSkillDir, 'SKILL.md'));
+      console.log('  \x1b[32m✓\x1b[0m .claude/skills/c-slop/SKILL.md');
+    }
+  }
+
   console.log('');
   console.log('\x1b[32m  ✓ Project created successfully!\x1b[0m');
   console.log('');
