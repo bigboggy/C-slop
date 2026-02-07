@@ -70,8 +70,9 @@ const config: Config = {
         },
         {
           href: 'https://github.com/bigboggy/C-slop',
-          label: 'GitHub',
-          position: 'right',
+          position: 'left',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
