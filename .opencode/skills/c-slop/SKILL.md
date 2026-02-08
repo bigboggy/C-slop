@@ -29,31 +29,27 @@ C-slop is designed for **machine efficiency** - minimizing tokens while maintain
 
 ### Symbol Glossary
 
-| Symbol | Meaning | Example |
-|--------|---------|---------|
-| `*` | Route definition | `*/users` |
-| `+` | POST method | `*/users +` |
-| `^` | PUT method | `*/users/:id ^` |
-| `-` | DELETE method | `*/users/:id -` |
-| `@` | Database table | `@users` |
-| `$` | Request/Input data | `$.body`, `$.id` |
-| `#` | Response/Output | `#json`, `#201` |
-| `>` | Pipeline operator | `@users > #json` |
-| `?` | Query/Filter | `@users?{active:true}` |
-| `!` | Action/Mutation | `@users!$.body` |
-| `~` | PUT method (backend) / Effect (frontend) | `~ fetch("/api")` |
-| `<?` | Template separator (UI) | Separates state from markup |
-| `@@` | Component usage | `@@Counter` |
-| `:=` | Computed value | `$doubled := $count * 2` |
+- `*` — Route definition — `*/users`
+- `+` — POST method — `*/users +`
+- `^` — PUT method — `*/users/:id ^`
+- `-` — DELETE method — `*/users/:id -`
+- `@` — Database table — `@users`
+- `$` — Request/Input data — `$.body`, `$.id`
+- `#` — Response/Output — `#json`, `#201`
+- `>` — Pipeline operator — `@users > #json`
+- `?` — Query/Filter — `@users?{active:true}`
+- Action/Mutation `！` — `@users！$.body`
+- `~` — PUT method (backend) / Effect (frontend) — `~ fetch("/api")`
+- `<?` — Template separator (UI) — Separates state from markup
+- `@@` — Component usage — `@@Counter`
+- `:=` — Computed value — `$doubled := $count * 2`
 
 ## File Types
 
-| Extension | Purpose | Example |
-|-----------|---------|---------|
-| `.slop` | Backend API routes | `api.slop` |
-| `.ui` | Frontend components | `Counter.ui` |
-| `router.slop` | Client-side routing | `router.slop` |
-| `slop.json` | Configuration | Project settings |
+- `.slop` — Backend API routes — `api.slop`
+- `.ui` — Frontend components — `Counter.ui`
+- `router.slop` — Client-side routing — `router.slop`
+- `slop.json` — Configuration — Project settings
 
 ## Backend Syntax (.slop files)
 
@@ -61,18 +57,18 @@ C-slop is designed for **machine efficiency** - minimizing tokens while maintain
 
 ```cslop
 # GET routes - fetch data
-*/ > #json({message: "Hello!"})
+*/ > #json({message: "Hello！"})
 */users > @users > #json
 */users/:id > @users[$.id] > #json
 
 # POST route - create
-*/users + @users!$.body > #json
+*/users + @users！$.body > #json
 
 # PUT route - update
-*/users/:id ~ @users[$.id]!$.body > #json
+*/users/:id ~ @users[$.id]！$.body > #json
 
 # DELETE route
-*/users/:id - @users[$.id]!- > #204
+*/users/:id - @users[$.id]！- > #204
 ```
 
 ### Database Operations
@@ -82,9 +78,9 @@ C-slop is designed for **machine efficiency** - minimizing tokens while maintain
 @users[123]                 # Select by ID
 @users[$.id]                # Select by request param
 @users?{active:true}        # Filter
-@users!{name:"Alice"}       # Insert
-@users[123]!{name:"Bob"}    # Update
-@users[123]!-               # Delete
+@users！{name:"Alice"}       # Insert
+@users[123]！{name:"Bob"}    # Update
+@users[123]！-               # Delete
 ```
 
 ### Request Data ($)
@@ -117,7 +113,7 @@ $.headers   # Headers
 @users?{active:true} > #json
 
 # Create and return
-@users!$.body > #json
+@users！$.body > #json
 
 # Error handling
 @users[$.id] >| #404 > #json
@@ -165,7 +161,7 @@ div[class{$activeClass}]
 ? $loading
   p["Loading..."]
 : $error
-  p["Error!"]
+  p["Error！"]
 : 
   p["Content"]
 
@@ -197,9 +193,9 @@ button["Back" @nav(/)]
 # api.slop - Full REST API in 5 lines
 */users > @users > #json
 */users/:id > @users[$.id] > #json
-*/users + @users!$.body > #json
-*/users/:id ~ @users[$.id]!$.body > #json
-*/users/:id - @users[$.id]!- > #204
+*/users + @users！$.body > #json
+*/users/:id ~ @users[$.id]！$.body > #json
+*/users/:id - @users[$.id]！- > #204
 ```
 
 ## Commands
@@ -274,7 +270,7 @@ my-app/
 ```cslop
 */users + {
   $.body.name ?? #400("name required")
-  @users!$.body > #201
+  @users！$.body > #201
 }
 ```
 
